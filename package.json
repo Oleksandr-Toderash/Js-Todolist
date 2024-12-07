@@ -1,0 +1,16 @@
+{
+  "name": "js-to-do-list",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "webpack": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
