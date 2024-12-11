@@ -9,9 +9,9 @@
   <div class="content-container">
     <div class="input-container">
       <div class="input-box-shadow">
-        <input type="text" placeholder="What would you like to do?">
+        <input class="inputText" type="text" placeholder="What would you like to do?">
       </div>
-      <button>Add</button>
+      <button id="addBtn">Add</button>
     </div>
     <div class="todo-container">
       <h1>Todo list</h1>
@@ -20,16 +20,25 @@
         <p>Status</p>
         <p>Close</p>
       </div>
-      <!-- <div class="task-container">
+      <div id="taskList">
+        <!-- <div class="task-container">
         <p style="padding-left: 3rem;">Task</p>
         <p class="task-status">pending</p>
         <div >
           <img class="delete-icon-box"  src="https://cdn-icons-png.flaticon.com/512/5972/5972943.png" alt="delete-icon">
+        </div> -->
+      </div>
+      </div>
+      <div id="emptyTaskContainer" class="empty-task-container">
+        <div class="empty-task-box">
+          <p>Add a new task</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/64/64788.png" alt="arrow-to-the-button">
+          <img src="https://static-00.iconduck.com/assets.00/task-list-add-icon-512x512-hjg3jflj.png" alt="add-task-button">
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 
-  <script src="./index.js"></script> 
+  <script src="./index.js"></script>
 </body>
 </html>
