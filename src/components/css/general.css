@@ -3,8 +3,18 @@
   flex-direction: column;
   gap: 1rem;
   width: 700px;
-  height: 800px;
+  height: 100%;
   margin: 0 auto;
+  margin-top: 10px;
+}
+
+body{
+  background-image: url(https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63616.jpg?t=st=1734450768~exp=1734454368~hmac=d4fd20d0cc49c55d0d606f362b3bedfba4e7c94e3aabe51b33cc43ece985d4f0&w=1380);
+  /* background-image: url(https://img.freepik.com/free-vector/blank-blue-halftone-background_53876-114592.jpg?t=st=1734451214~exp=1734454814~hmac=4fccb90dbadf0a5c3048e4041793fd179ca964457e56d077865cae9829acd074&w=996); */
+  /* background-image: url(https://img.freepik.com/free-photo/artistic-blurry-colorful-wallpaper-background_58702-8312.jpg?t=st=1734451392~exp=1734454992~hmac=6e752b0c381a0cfb13f2db1346c4ee9c36fd6d00d70db5656e11bfb3399d43d5&w=996); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 *, *::before,*::after {

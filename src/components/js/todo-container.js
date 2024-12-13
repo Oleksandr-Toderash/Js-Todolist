@@ -45,6 +45,11 @@ function emptyTaskContainer() {
 
 function newTask() {
   addBtn.addEventListener('click', () => {
+    if (inputText.value.trim().length === 0) {
+      // Do nothing if input is empty
+      return;
+    }
+
     // create a task
     if (taskList.children.length >= 0) {
       const newTask = new Task(inputText.value).defineTask();
