@@ -1,6 +1,7 @@
 const inputTextValue = document.querySelector('.inputText').value;
 const inputText = document.querySelector('.inputText');
 const addBtn = document.querySelector('#addBtn');
+const addBtn2 = document.querySelector('#addBtn2');
 let taskList = document.querySelector('#taskList');
 
 class Task {
@@ -39,14 +40,10 @@ class Task {
   }
 }
 
-function emptyTaskContainer() {
-  document.querySelector('#emptyTaskContainer').style.display = 'none';
-}
-
 function newTask() {
   addBtn.addEventListener('click', () => {
+    // Do nothing if input is empty
     if (inputText.value.trim().length === 0) {
-      // Do nothing if input is empty
       return;
     }
 
@@ -54,15 +51,11 @@ function newTask() {
     if (taskList.children.length >= 0) {
       const newTask = new Task(inputText.value).defineTask();
       taskList.appendChild(newTask);
-      emptyTaskContainer()
+      document.querySelector('#emptyTaskContainer').style.display = 'none';
     }
 
     inputText.value = ''
   })
-
-  if (taskList.children.length > 0) {
-    emptyTaskContainer();
-  }
 }
 
 function createTask() {
