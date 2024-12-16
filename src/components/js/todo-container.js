@@ -58,8 +58,15 @@ function newTask() {
   })
 }
 
+function btnNavigarion() {
+  addBtn2.addEventListener('click', () => {
+    inputText.focus();
+  });
+}
+
 function createTask() {
   newTask();
+  btnNavigarion();
 }
 
 createTask();
