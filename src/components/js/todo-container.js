@@ -41,21 +41,19 @@ class Task {
 }
 
 function newTask() {
-  addBtn.addEventListener('click', () => {
-    // Do nothing if input is empty
-    if (inputText.value.trim().length === 0) {
-      return;
-    }
+  // Do nothing if input is empty
+  if (inputText.value.trim().length === 0) {
+    return;
+  }
 
-    // create a task
-    if (taskList.children.length >= 0) {
-      const newTask = new Task(inputText.value).defineTask();
-      taskList.appendChild(newTask);
-      document.querySelector('#emptyTaskContainer').style.display = 'none';
-    }
+  // create a task
+  if (taskList.children.length >= 0) {
+    const newTask = new Task(inputText.value).defineTask();
+    taskList.appendChild(newTask);
+    document.querySelector('#emptyTaskContainer').style.display = 'none';
+  }
 
-    inputText.value = ''
-  })
+  inputText.value = ''
 }
 
 function btnNavigarion() {
@@ -65,9 +63,16 @@ function btnNavigarion() {
 }
 
 function createTask() {
-  newTask();
+  addBtn.addEventListener('click', () => {
+    newTask();
+  })
+
+  inputText.addEventListener('keydown', (event) => {
+    if (event.key === "Enter") {
+      newTask();
+    }
+  })
   btnNavigarion();
 }
 
-createTask();
-
+createTask()
