@@ -17,6 +17,7 @@ class Task {
     const pNameClassElem = document.createElement('p');
     pNameClassElem.style.paddingLeft = '3rem';
     pNameClassElem.textContent = this.name;
+    pNameClassElem.classList.add('textName');
 
     const pMarkClassElem = document.createElement('p');
     pMarkClassElem.classList.add('task-status');
@@ -56,6 +57,8 @@ function newTask() {
   inputText.value = ''
 }
 
+
+
 function btnNavigarion() {
   addBtn2.addEventListener('click', () => {
     inputText.focus();
@@ -73,6 +76,45 @@ function createTask() {
     }
   })
   btnNavigarion();
+
+  taskList.addEventListener('dblclick', (event) => {
+    if (event.target.classList.contains('textName')) {
+      let currentText = event.target.textContent;
+
+      const inputElem = document.createElement('input');
+      inputElem.type = 'text';
+      inputElem.value = event.target.textContent;
+      inputElem.classList.add('textName');
+      inputElem.style.paddingLeft = '3rem';
+      inputElem.style.borderwidth = '3px';
+      inputElem.style.borderColor = 'black';
+
+      event.target.replaceWith(inputElem);
+
+      inputElem.focus();
+
+      inputElem.addEventListener('blur', () => {
+        const newText = inputElem.value;
+
+        const pElem = document.createElement('p');
+        pElem.textContent = newText;
+        pElem.className = 'textName';
+        pElem.style.paddingLeft = '3rem';
+
+        inputElem.replaceWith(pElem);
+        if (event.target.value === '') {
+          event.target.value = currentText
+        }
+      });
+
+      inputElem.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          inputElem.blur();
+        }
+      });
+    }
+  });
 }
 
 createTask()
+
