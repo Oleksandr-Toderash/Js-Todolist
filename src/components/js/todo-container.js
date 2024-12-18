@@ -7,6 +7,7 @@ let taskList = document.querySelector('#taskList');
 class Task {
   constructor(name) {
     this.name = name;
+    this.imgClassElem = '';
   }
 
   defineTask() {
@@ -30,6 +31,7 @@ class Task {
     const imgClassElem = document.createElement('img');
     imgClassElem.classList.add('delete-icon-box');
     imgClassElem.src = 'https://cdn-icons-png.flaticon.com/512/5972/5972943.png'
+    this.imgClassElem = imgClassElem;
 
     divIconClassElem.append(imgClassElem)
 
@@ -59,10 +61,25 @@ function newTask() {
 
 
 
-function btnNavigarion() {
+function btnNavigation() {
   addBtn2.addEventListener('click', () => {
     inputText.focus();
   });
+}
+
+function deleteTask() {
+  taskList.addEventListener('click', (event) => {
+    if (event.target && event.target.classList.contains('delete-icon-box')) {
+      const taskContainer = event.target.closest('.task-container');
+      if (taskContainer) {
+        taskContainer.remove();
+
+        if (taskList.children.length === 0) {
+          document.querySelector('#emptyTaskContainer').style.removeProperty('display');
+        }
+      }
+    }
+  })
 }
 
 function createTask() {
@@ -70,12 +87,18 @@ function createTask() {
     newTask();
   })
 
+  if (taskList.children.length > 0) {
+    document.querySelector('#emptyTaskContainer').style.display = 'none';
+  }
+
   inputText.addEventListener('keydown', (event) => {
     if (event.key === "Enter") {
       newTask();
     }
   })
-  btnNavigarion();
+  btnNavigation();
+  deleteTask()
+
 
   taskList.addEventListener('dblclick', (event) => {
     if (event.target.classList.contains('textName')) {
@@ -118,4 +141,3 @@ function createTask() {
 }
 
 createTask()
-

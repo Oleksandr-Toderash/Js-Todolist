@@ -77,11 +77,14 @@
   width: 2rem;
   cursor: pointer;
 }
-
+.hidden {
+  display: none;
+}
 .delete-icon-box {
   width: 1.5rem;
   cursor: pointer;
 }
+
 
 .task-status {
   width: fit-content;
