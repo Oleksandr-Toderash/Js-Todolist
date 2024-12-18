@@ -86,7 +86,8 @@ function createTask() {
       inputElem.value = event.target.textContent;
       inputElem.classList.add('textName');
       inputElem.style.paddingLeft = '3rem';
-      inputElem.style.borderwidth = '3px';
+      inputElem.style.borderWidth = '3px';
+      inputElem.style.borderRadius = '0.5rem'
       inputElem.style.borderColor = 'black';
 
       event.target.replaceWith(inputElem);
@@ -102,8 +103,8 @@ function createTask() {
         pElem.style.paddingLeft = '3rem';
 
         inputElem.replaceWith(pElem);
-        if (event.target.value === '') {
-          event.target.value = currentText
+        if (pElem.textContent == '') {
+          pElem.textContent = currentText;
         }
       });
 
