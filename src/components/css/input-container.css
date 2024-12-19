@@ -44,3 +44,18 @@
   box-shadow: hsla(7, 80%, 64%, 0.552) 0px 7px 29px 0px;
   transform: scale(1.01);
 }
+
+.wallpaper-container {
+  position: absolute;
+  right: -2.5rem;
+  width: fit-content;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 100px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.wallpaper-container:hover {
+  box-shadow: rgba(48, 48, 48, 0.24) 0px 6px 15px;
+}
