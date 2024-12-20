@@ -4,6 +4,10 @@ const addBtn = document.querySelector('#addBtn');
 const addBtn2 = document.querySelector('#addBtn2');
 let taskList = document.querySelector('#taskList');
 
+// wallpaper button
+const wallpaperBtn = document.querySelector('#wallpaperBtn');
+const wallpaperImgElem = document.querySelector('.wallpaper-block-img');
+
 class Task {
   constructor(name) {
     this.name = name;
@@ -82,7 +86,7 @@ function deleteTask() {
   })
 }
 
-function createTask() {
+export function createTask() {
   addBtn.addEventListener('click', () => {
     newTask();
   })
@@ -140,4 +144,11 @@ function createTask() {
   });
 }
 
-createTask()
+// wallpaper button
+
+wallpaperBtn.addEventListener('click', openWallpaperBox)
+
+function openWallpaperBox() {
+  document.querySelector('.wallpaper-container').classList.toggle('active');
+  document.querySelector('.wallpaper-block').classList.toggle('active')
+}

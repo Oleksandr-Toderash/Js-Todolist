@@ -5,4 +5,6 @@ import "./components/css/todo-container.css";
 
 // js
 import "./components/js/todo-container.js";
+import { createTask } from "./components/js/todo-container.js";
 
+createTask();
