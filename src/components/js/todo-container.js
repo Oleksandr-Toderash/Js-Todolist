@@ -6,7 +6,7 @@ let taskList = document.querySelector('#taskList');
 
 // wallpaper button
 const wallpaperBtn = document.querySelector('#wallpaperBtn');
-const wallpaperImgElem = document.querySelector('.wallpaper-block-img');
+const wallpaperImgElem = document.querySelectorAll('.wallpaper-block-img');
 
 class Task {
   constructor(name) {
@@ -152,3 +152,20 @@ function openWallpaperBox() {
   document.querySelector('.wallpaper-container').classList.toggle('active');
   document.querySelector('.wallpaper-block').classList.toggle('active')
 }
+
+
+wallpaperImgElem.forEach(img => {
+  img.addEventListener('click', () => {
+    const imgBody = img.src;
+    localStorage.setItem('imgBody', imgBody);
+    document.body.style.backgroundImage = `url(${imgBody})`;
+  })
+})
+
+const savedImgBody = localStorage.getItem('imgBody');
+
+document.body.style.backgroundImage = `url(${savedImgBody})`;
+
+// 1step define a property
+// 2step set the localstorage
+// 3step get the localstorage outside
