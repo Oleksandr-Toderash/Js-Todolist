@@ -89,10 +89,21 @@
 
 .task-status {
   width: fit-content;
-  background-color: #9bc1bc;
   padding: 5px 10px;
   border-radius: 5px;
-  color: white;
+  font-weight: 600;
+}
+.task-status.to-do {
+  background-color: #61a0f8;
+  color: #0e2f5d;
+}
+.task-status.pending {
+  background-color: #8974f2;
+  color: #352C63;
+}
+.task-status.done {
+  background-color: #53ca12;
+  color: #37471F;
 }
 
 #taskList {

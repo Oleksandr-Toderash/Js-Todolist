@@ -26,7 +26,12 @@ class Task {
 
     const pMarkClassElem = document.createElement('p');
     pMarkClassElem.classList.add('task-status');
-    pMarkClassElem.textContent = 'Pending';
+    pMarkClassElem.classList.add('to-do');
+    // pMarkClassElem.classList.add('pending');
+    // pMarkClassElem.classList.add('done');
+    pMarkClassElem.textContent = 'To do';
+    // pMarkClassElem.textContent = 'Pending';
+    // pMarkClassElem.textContent = 'Done';
 
     const divIconClassElem = document.createElement('div');
     divIconClassElem.classList.add('tasklist');
@@ -165,7 +170,3 @@ wallpaperImgElem.forEach(img => {
 const savedImgBody = localStorage.getItem('imgBody');
 
 document.body.style.backgroundImage = `url(${savedImgBody})`;
-
-// 1step define a property
-// 2step set the localstorage
-// 3step get the localstorage outside
