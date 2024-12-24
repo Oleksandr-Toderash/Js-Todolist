@@ -92,6 +92,7 @@
   border-radius: 5px;
   font-weight: 600;
   height: fit-content;
+  cursor: pointer;
 }
 .task-status.to-do {
   background-color: #61a0f8;

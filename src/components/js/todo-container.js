@@ -43,6 +43,8 @@ class Task {
       statusItem.classList.add('status-item')
       statusItem.textContent = status;
       statusItem.addEventListener('click', () => {
+
+        // localStorage.setItem('statusItem', status);
         pMarkClassElem.textContent = status;
 
         if (status === 'To do') {
@@ -61,8 +63,10 @@ class Task {
           pMarkClassElem.classList.remove('to-do');
           pMarkClassElem.style.display = 'block'
         }
+
         statusMenuElem.style.display = 'none';
         pMarkOptionBox.style.background = 'none'
+        saveTasksToLocalStorage()
       })
       statusMenuElem.appendChild(statusItem);
     })
@@ -80,7 +84,15 @@ class Task {
     const imgClassElem = document.createElement('img');
     imgClassElem.classList.add('delete-icon-box');
     imgClassElem.src = 'https://cdn-icons-png.flaticon.com/512/5972/5972943.png'
-    this.imgClassElem = imgClassElem;
+    imgClassElem.addEventListener('click', () => {
+      const tasks = Array.from(taskList.children).filter((task) => task !== divClassElem);
+
+      taskList.innerHTML = '';
+      tasks.forEach((task) => taskList.appendChild(task));
+
+      saveTasksToLocalStorage();
+    });
+
 
     divIconClassElem.append(imgClassElem)
     pMarkOptionBox.appendChild(statusMenuElem)
@@ -94,6 +106,29 @@ class Task {
   }
 }
 
+function saveTasksToLocalStorage() {
+  const tasks = [];
+  taskList.querySelectorAll('.task-container').forEach((taskElem) => {
+    const name = taskElem.querySelector('.textName').textContent;
+    const status = taskElem.querySelector('.task-status').textContent;
+    tasks.push({ name, status });
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasksFromLocalStorage() {
+  const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  storedTasks.forEach(({ name, status }) => {
+    const task = new Task(name);
+    const taskElem = task.defineTask();
+    const statusElem = taskElem.querySelector('.task-status');
+
+    statusElem.textContent = status;
+    statusElem.classList.add(status.toLowerCase().replace(' ', '-'));
+    taskList.appendChild(taskElem);
+  });
+}
+
 function newTask() {
   // Do nothing if input is empty
   if (inputText.value.trim().length === 0) {
@@ -103,14 +138,16 @@ function newTask() {
   // create a task
   if (taskList.children.length >= 0) {
     const newTask = new Task(inputText.value).defineTask();
-
     taskList.appendChild(newTask);
+
     document.querySelector('#emptyTaskContainer').style.display = 'none';
+    saveTasksToLocalStorage()
   }
 
   inputText.value = ''
 }
 
+loadTasksFromLocalStorage()
 
 
 function btnNavigation() {
