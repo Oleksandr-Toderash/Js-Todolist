@@ -24,14 +24,54 @@ class Task {
     pNameClassElem.textContent = this.name;
     pNameClassElem.classList.add('textName');
 
+    const pMarkOptionBox = document.createElement('div');
+    pMarkOptionBox.classList.add('status-option-box')
+    pMarkOptionBox.style.background = 'none'
+
     const pMarkClassElem = document.createElement('p');
     pMarkClassElem.classList.add('task-status');
-    pMarkClassElem.classList.add('to-do');
-    // pMarkClassElem.classList.add('pending');
-    // pMarkClassElem.classList.add('done');
+    pMarkClassElem.classList.add('to-do')
     pMarkClassElem.textContent = 'To do';
-    // pMarkClassElem.textContent = 'Pending';
-    // pMarkClassElem.textContent = 'Done';
+
+    const statusMenuElem = document.createElement('ul');
+    statusMenuElem.classList.add('status-menu');
+    statusMenuElem.style.display = 'none';
+
+    const statuses = ['Done', 'Pending', 'To do'];
+    statuses.forEach(status => {
+      const statusItem = document.createElement('ul');
+      statusItem.classList.add('status-item')
+      statusItem.textContent = status;
+      statusItem.addEventListener('click', () => {
+        pMarkClassElem.textContent = status;
+
+        if (status === 'To do') {
+          pMarkClassElem.classList.add('to-do');
+          pMarkClassElem.classList.remove('pending');
+          pMarkClassElem.classList.remove('done');
+          pMarkClassElem.style.display = 'block';
+        } else if (status === 'Pending') {
+          pMarkClassElem.classList.add('pending');
+          pMarkClassElem.classList.remove('to-do');
+          pMarkClassElem.classList.remove('done');
+          pMarkClassElem.style.display = 'block';
+        } else if (status === 'Done') {
+          pMarkClassElem.classList.add('done');
+          pMarkClassElem.classList.remove('pending');
+          pMarkClassElem.classList.remove('to-do');
+          pMarkClassElem.style.display = 'block'
+        }
+        statusMenuElem.style.display = 'none';
+        pMarkOptionBox.style.background = 'none'
+      })
+      statusMenuElem.appendChild(statusItem);
+    })
+
+    pMarkClassElem.addEventListener('click', () => {
+      statusMenuElem.style.display = statusMenuElem.style.display === 'none' ? 'flex' : 'none';
+      pMarkClassElem.style.display = 'none';
+      pMarkOptionBox.style.background = ' #dbdbdb'
+    })
 
     const divIconClassElem = document.createElement('div');
     divIconClassElem.classList.add('tasklist');
@@ -43,9 +83,11 @@ class Task {
     this.imgClassElem = imgClassElem;
 
     divIconClassElem.append(imgClassElem)
+    pMarkOptionBox.appendChild(statusMenuElem)
+    pMarkOptionBox.appendChild(pMarkClassElem)
 
     divClassElem.appendChild(pNameClassElem)
-    divClassElem.appendChild(pMarkClassElem)
+    divClassElem.appendChild(pMarkOptionBox)
     divClassElem.appendChild(divIconClassElem)
 
     return divClassElem;
@@ -61,6 +103,7 @@ function newTask() {
   // create a task
   if (taskList.children.length >= 0) {
     const newTask = new Task(inputText.value).defineTask();
+
     taskList.appendChild(newTask);
     document.querySelector('#emptyTaskContainer').style.display = 'none';
   }
@@ -170,3 +213,5 @@ wallpaperImgElem.forEach(img => {
 const savedImgBody = localStorage.getItem('imgBody');
 
 document.body.style.backgroundImage = `url(${savedImgBody})`;
+
+
