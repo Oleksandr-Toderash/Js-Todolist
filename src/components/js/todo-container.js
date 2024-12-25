@@ -207,6 +207,8 @@ wallpaperImgElem.forEach(img => {
     const imgBody = img.src;
     localStorage.setItem('imgBody', imgBody);
     document.body.style.backgroundImage = `url(${imgBody})`;
+    document.querySelector('.wallpaper-container').classList.toggle('active');
+    document.querySelector('.wallpaper-block').classList.toggle('active')
   })
 })
 
