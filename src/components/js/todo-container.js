@@ -43,8 +43,6 @@ class Task {
       statusItem.classList.add('status-item')
       statusItem.textContent = status;
       statusItem.addEventListener('click', () => {
-
-        // localStorage.setItem('statusItem', status);
         pMarkClassElem.textContent = status;
 
         if (status === 'To do') {
