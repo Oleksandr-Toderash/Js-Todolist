@@ -19,6 +19,13 @@ class Task {
     const divClassElem = document.createElement('div');
     divClassElem.classList.add('task-container');
 
+    // description button
+    const taskDescrIconBox = document.createElement('div');
+    taskDescrIconBox.classList.add('task-description-icon');
+
+    const taskDescrIcon = document.createElement('img');
+    taskDescrIcon.src = 'https://www.clipartmax.com/png/full/422-4223679_integral-declaration-declaration-description-icon-content-offer-icon.png'
+
     const pNameClassElem = document.createElement('p');
     pNameClassElem.style.paddingLeft = '3rem';
     pNameClassElem.textContent = this.name;
@@ -69,6 +76,18 @@ class Task {
       statusMenuElem.appendChild(statusItem);
     })
 
+    divClassElem.addEventListener('mouseenter', () => {
+      taskDescrIconBox.style.display = 'block';
+      if (taskDescrIconBox.style.display === 'block') {
+        taskDescrIconBox.addEventListener('mouseenter', () => {
+          taskDescrIconBox.style.display === 'block';
+        })
+      }
+    })
+    divClassElem.addEventListener('mouseleave', () => {
+      taskDescrIconBox.style.display = 'none';
+    })
+
     pMarkClassElem.addEventListener('click', () => {
       statusMenuElem.style.display = statusMenuElem.style.display === 'none' ? 'flex' : 'none';
       pMarkClassElem.style.display = 'none';
@@ -91,12 +110,13 @@ class Task {
       saveTasksToLocalStorage();
     });
 
-
+    taskDescrIconBox.appendChild(taskDescrIcon)
     divIconClassElem.append(imgClassElem)
     pMarkOptionBox.appendChild(statusMenuElem)
     pMarkOptionBox.appendChild(pMarkClassElem)
 
     divClassElem.appendChild(pNameClassElem)
+    divClassElem.appendChild(taskDescrIconBox)
     divClassElem.appendChild(pMarkOptionBox)
     divClassElem.appendChild(divIconClassElem)
 
@@ -187,7 +207,7 @@ export function createTask() {
   deleteTask()
 
 
-  taskList.addEventListener('dblclick', (event) => {
+  taskList.addEventListener('click', (event) => {
     if (event.target.classList.contains('textName')) {
       let currentText = event.target.textContent;
 
@@ -203,6 +223,20 @@ export function createTask() {
       event.target.replaceWith(inputElem);
 
       inputElem.focus();
+
+      const handleBlur = () => {
+        const newText = inputElem.value.trim(); // Remove leading/trailing whitespace
+
+        const pElem = document.createElement('p');
+        pElem.textContent = newText || currentText; // Fallback to original text if empty
+        pElem.className = 'textName';
+        pElem.style.paddingLeft = '3rem';
+
+        // Ensure the input element is still in the DOM before replacing
+        if (inputElem.parentNode) {
+          inputElem.replaceWith(pElem);
+        }
+      };
 
       inputElem.addEventListener('blur', () => {
         const newText = inputElem.value;
@@ -220,11 +254,13 @@ export function createTask() {
 
       inputElem.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
+          inputElem.removeEventListener('blur', handleBlur);
           inputElem.blur();
         }
       });
     }
   });
+
 }
 
 // wallpaper button

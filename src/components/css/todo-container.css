@@ -31,7 +31,21 @@
   width: 100%;
   min-height: 50px;
   box-shadow: rgba(0, 0, 0, 0.315) 0px 1px 2px;
+  position: relative;
 }
+.task-description-icon {
+  cursor: pointer;
+  padding: 1rem;
+  position: absolute;
+  bottom: 50%;
+  right: -1.5rem;
+  transform: translate(50%, 50%);
+  display: none;
+}
+.task-description-icon img:first-child {
+  width: 1.5rem;
+}
+
 .task-container:last-child {
   /* border-radius: 1rem; */
   border-bottom-left-radius: 1rem;
@@ -40,7 +54,8 @@
 }
 
 .textName {
-  width: 20rem;
+  width: max-content;
+  max-width: 20rem;
   word-wrap: break-word;
   margin-top: 1rem;
   margin-bottom: 1rem;
