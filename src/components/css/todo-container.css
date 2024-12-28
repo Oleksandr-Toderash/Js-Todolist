@@ -1,8 +1,28 @@
+.task-main-container {
+  height: fit-content;
+}
+
 .todo-container {
   background-color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 1rem;
   margin-bottom: 15rem;
+}
+
+.todo-container {
+  overflow: visible; /* Allow the shadow to render outside the parent */
+}
+
+.description-container {
+  border-bottom: 2px solid rgb(179, 179, 179);
+  border-right: 2px solid rgb(179, 179, 179);
+  border-left: 2px solid rgb(179, 179, 179);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  background: rgb(219, 219, 219);
+  padding: 20px;
+  display: none;
 }
 
 .todo-container h1 {
@@ -33,6 +53,10 @@
   box-shadow: rgba(0, 0, 0, 0.315) 0px 1px 2px;
   position: relative;
 }
+.task-container:last-child {
+  border-radius: 1rem;
+  background: #0e2f5d;
+}
 .task-description-icon {
   cursor: pointer;
   padding: 1rem;
@@ -47,7 +71,7 @@
 }
 
 .task-container:last-child {
-  /* border-radius: 1rem; */
+  border-radius: 1rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.315) 0px 1px 2px;

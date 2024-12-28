@@ -15,9 +15,19 @@ class Task {
   }
 
   defineTask() {
-    // create an element
+    const taskMainContainer = document.createElement('div');
+    taskMainContainer.classList.add('task-main-container');
+
     const divClassElem = document.createElement('div');
     divClassElem.classList.add('task-container');
+
+    const taskDescrContainer = document.createElement('div');
+    taskDescrContainer.classList.add('description-container');
+
+    const taskDescrText = document.createElement('div');
+    taskDescrText.classList.add('description-text');
+    taskDescrText.textContent = 'Describe your task'
+
 
     // description button
     const taskDescrIconBox = document.createElement('div');
@@ -102,7 +112,7 @@ class Task {
     imgClassElem.classList.add('delete-icon-box');
     imgClassElem.src = 'https://cdn-icons-png.flaticon.com/512/5972/5972943.png'
     imgClassElem.addEventListener('click', () => {
-      const tasks = Array.from(taskList.children).filter((task) => task !== divClassElem);
+      const tasks = Array.from(taskList.children).filter((task) => task !== taskMainContainer);
 
       taskList.innerHTML = '';
       tasks.forEach((task) => taskList.appendChild(task));
@@ -110,17 +120,25 @@ class Task {
       saveTasksToLocalStorage();
     });
 
+
     taskDescrIconBox.appendChild(taskDescrIcon)
     divIconClassElem.append(imgClassElem)
     pMarkOptionBox.appendChild(statusMenuElem)
     pMarkOptionBox.appendChild(pMarkClassElem)
 
+    // task-description-box
+    taskDescrContainer.appendChild(taskDescrText)
+
+    // task-container
     divClassElem.appendChild(pNameClassElem)
     divClassElem.appendChild(taskDescrIconBox)
     divClassElem.appendChild(pMarkOptionBox)
     divClassElem.appendChild(divIconClassElem)
 
-    return divClassElem;
+    taskMainContainer.appendChild(divClassElem)
+    taskMainContainer.appendChild(taskDescrContainer)
+
+    return taskMainContainer;
   }
 }
 
@@ -148,7 +166,7 @@ function loadTasksFromLocalStorage() {
 }
 
 function newTask() {
-  // Do nothing if input is empty
+  // Do nothing if the input is empty
   if (inputText.value.trim().length === 0) {
     return;
   }
@@ -286,5 +304,3 @@ wallpaperImgElem.forEach(img => {
 const savedImgBody = localStorage.getItem('imgBody');
 
 document.body.style.backgroundImage = `url(${savedImgBody})`;
-
-
