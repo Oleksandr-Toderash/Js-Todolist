@@ -2,6 +2,8 @@
 
 ## Screenshots
 
+![image](https://github.com/user-attachments/assets/67ea9663-9f82-42e7-84cf-61b5d5b2f70c)
+
 
 A simple and interactive TodoList app built with JavaScript, HTML, and CSS that allows users to manage their daily tasks effectively. This app enables users to add, edit, and delete tasks while keeping track of completed and incomplete ones.
 
